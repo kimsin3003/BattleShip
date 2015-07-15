@@ -13,21 +13,63 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\ships">
+      <UniqueIdentifier>{e8d5fbab-e8a3-46de-8ccb-ef11c3134924}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="util.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="main.h">
+    <ClInclude Include="stdafx.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="util.h">
+    <ClInclude Include="targetver.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="AircraftCarrier.h">
+      <Filter>Source Files\ships</Filter>
+    </ClInclude>
+    <ClInclude Include="Battleship.h">
+      <Filter>Source Files\ships</Filter>
+    </ClInclude>
+    <ClInclude Include="Cruiser.h">
+      <Filter>Source Files\ships</Filter>
+    </ClInclude>
+    <ClInclude Include="Destroyer.h">
+      <Filter>Source Files\ships</Filter>
+    </ClInclude>
+    <ClInclude Include="Submarine.h">
+      <Filter>Source Files\ships</Filter>
+    </ClInclude>
+    <ClInclude Include="Ship.h">
+      <Filter>Source Files\ships</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AircraftCarrier.cpp">
+      <Filter>Source Files\ships</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleShip.cpp">
+      <Filter>Source Files\ships</Filter>
+    </ClCompile>
+    <ClCompile Include="Cruiser.cpp">
+      <Filter>Source Files\ships</Filter>
+    </ClCompile>
+    <ClCompile Include="Destroyer.cpp">
+      <Filter>Source Files\ships</Filter>
+    </ClCompile>
+    <ClCompile Include="Submarine.cpp">
+      <Filter>Source Files\ships</Filter>
+    </ClCompile>
+    <ClCompile Include="Ship.cpp">
+      <Filter>Source Files\ships</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

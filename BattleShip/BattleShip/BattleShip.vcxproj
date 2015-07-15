@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F91C7640-6C29-420F-B1BD-C06581951AA4}</ProjectGuid>
+    <ProjectGuid>{9F889D19-1719-4D42-A234-3565DFCCC838}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>BattleShip</RootNamespace>
   </PropertyGroup>
@@ -47,8 +47,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -61,8 +60,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -76,12 +74,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="util.cpp" />
+    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="main.h" />
-    <ClInclude Include="util.h" />
+    <ClInclude Include="AircraftCarrier.h" />
+    <ClInclude Include="Battleship.h" />
+    <ClInclude Include="Cruiser.h" />
+    <ClInclude Include="Destroyer.h" />
+    <ClInclude Include="Ship.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Submarine.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AircraftCarrier.cpp" />
+    <ClCompile Include="BattleShip.cpp" />
+    <ClCompile Include="Cruiser.cpp" />
+    <ClCompile Include="Destroyer.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Submarine.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
