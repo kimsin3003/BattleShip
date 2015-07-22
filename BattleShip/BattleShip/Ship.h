@@ -1,25 +1,42 @@
 #pragma once
 #include <vector>
 
+struct Point
+{
+	Point(char ax, char ay)
+	{
+		x = ax; 
+		y = ay;
+	}
+	char x, y; //x: 'a'~'h', y: '1'~'8'
+
+};
+
+enum HitResult
+{
+	MISS,
+	HIT,
+	DESTROY
+};
+
 class Ship
 {
 
 public:
-	typedef struct position{
-		int x;
-		int y;
-	}POS;
-
-protected:
-	
-	std::vector<POS> body;
-	std::string name;
-
-public:
 	Ship();
 	~Ship();
-	void isAlive();
-	void getName();
-	
-};
 
+	HitResult HitCheck(char x, char y);
+	HitResult HitCheck(Point pos);
+	void AddPosition(Point pos);
+	void printPosition();
+
+	int GetHP(){ return m_Hp; }
+	std::string GetName(){ return m_Name; }
+
+
+protected:
+	std::string m_Name; 
+	std::vector<Point> m_Pos;
+	int m_Hp;
+};

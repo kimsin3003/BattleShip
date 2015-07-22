@@ -27,9 +27,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="AircraftCarrier.h">
-      <Filter>Source Files\ships</Filter>
-    </ClInclude>
     <ClInclude Include="Battleship.h">
       <Filter>Source Files\ships</Filter>
     </ClInclude>
@@ -39,10 +36,10 @@
     <ClInclude Include="Destroyer.h">
       <Filter>Source Files\ships</Filter>
     </ClInclude>
-    <ClInclude Include="Submarine.h">
+    <ClInclude Include="Ship.h">
       <Filter>Source Files\ships</Filter>
     </ClInclude>
-    <ClInclude Include="Ship.h">
+    <ClInclude Include="Aircraft.h">
       <Filter>Source Files\ships</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,9 +50,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AircraftCarrier.cpp">
-      <Filter>Source Files\ships</Filter>
-    </ClCompile>
     <ClCompile Include="BattleShip.cpp">
       <Filter>Source Files\ships</Filter>
     </ClCompile>
@@ -65,10 +59,10 @@
     <ClCompile Include="Destroyer.cpp">
       <Filter>Source Files\ships</Filter>
     </ClCompile>
-    <ClCompile Include="Submarine.cpp">
+    <ClCompile Include="Ship.cpp">
       <Filter>Source Files\ships</Filter>
     </ClCompile>
-    <ClCompile Include="Ship.cpp">
+    <ClCompile Include="Aircraft.cpp">
       <Filter>Source Files\ships</Filter>
     </ClCompile>
   </ItemGroup>

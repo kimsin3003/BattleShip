@@ -10,10 +10,20 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="week3.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameManager.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{9F889D19-1719-4D42-A234-3565DFCCC838}</ProjectGuid>
+    <ProjectGuid>{CFE12224-575A-4746-AB1A-0E03E1A37AA1}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>BattleShip</RootNamespace>
+    <RootNamespace>week3</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -73,30 +83,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Aircraft.h" />
-    <ClInclude Include="Battleship.h" />
-    <ClInclude Include="Cruiser.h" />
-    <ClInclude Include="Destroyer.h" />
-    <ClInclude Include="Ship.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Aircraft.cpp" />
-    <ClCompile Include="BattleShip.cpp" />
-    <ClCompile Include="Cruiser.cpp" />
-    <ClCompile Include="Destroyer.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Ship.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -1,10 +1,11 @@
-#pragma once
+#include "stdafx.h"
 #include "Battleship.h"
 
 
 Battleship::Battleship()
 {
-	name = "Battelship";
+	m_Name = "Battleship";
+	m_Hp = 4;
 }
 
 

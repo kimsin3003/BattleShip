@@ -4,7 +4,8 @@
 
 Cruiser::Cruiser()
 {
-	name = "Cruiser";
+	m_Name = "Cruiser";
+	m_Hp = 3;
 }
 
 
