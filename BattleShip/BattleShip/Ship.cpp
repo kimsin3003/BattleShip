@@ -61,3 +61,7 @@ void Ship::printPosition()
 		printf("Point: (%c, %c)\n", pos.x, pos.y);
 	}
 }
+
+Point Ship::GetPosition(int index){
+	return m_Pos[index];
+}

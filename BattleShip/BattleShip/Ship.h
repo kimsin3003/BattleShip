@@ -3,6 +3,8 @@
 
 struct Point
 {
+	Point(){}
+
 	Point(char ax, char ay)
 	{
 		x = ax; 
@@ -30,6 +32,7 @@ public:
 	HitResult HitCheck(Point pos);
 	void AddPosition(Point pos);
 	void printPosition();
+	Point GetPosition(int index);
 
 	int GetHP(){ return m_Hp; }
 	std::string GetName(){ return m_Name; }
