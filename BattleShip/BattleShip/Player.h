@@ -1,29 +1,34 @@
 #pragma once
 #include "Ship.h"
 
-enum DIR {
-	UP,
-	RIGHT,
-	DOWN,
-	LEFT
-};
+#include "string"
+#include <iostream>
 
 class Player
 {
 public:
+	
 	Player();
 	~Player();
-	void SetupShips(Ship* ship);
-
-	void PrintMap();
-	std::vector<Ship*> m_Ships;
-private:
+	void SetupShips();
+	bool IsValidPoint(Point startPoint, int lenth, int dir);
 	bool IsValidRange(Point point);
-	bool IsValidPoint(Point point);
-	bool IsValid(Point startPoint, int lenth, int dir);
 	Point MakePointDirected(Point start, int dir, int i);
-protected:
-	int m_Map[8][8];
+	bool IsAlive();
+	Point Attack();
+	//Map GetMap() { return map; };
+	Ship* GetShip(int i) { return m_Ships.at(i); };
+	int GetShipNum() { return m_Ships.size(); }
+	HitResult HitCheck(Point point);
+
+	void Reset();
+	void Init();
+
+private:
 	
+	std::vector<Ship*> m_Ships;
+	HitResult DestoySign(Ship* ship);
+	std::vector<Point> attackedPoints;
+	bool IsValidAttack(Point point);
 };
 

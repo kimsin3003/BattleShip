@@ -6,5 +6,6 @@ class Cruiser :
 public:
 	Cruiser();
 	~Cruiser();
+	void Reset() override;
 };
 

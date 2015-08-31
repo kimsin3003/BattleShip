@@ -1,7 +1,4 @@
-
 #include "stdafx.h"
-#include <stdlib.h>
-#include <windows.h>
 #include <iostream>
 #include <string>
 #include "Player.h"
@@ -10,36 +7,41 @@
 #include "Cruiser.h"
 #include "Destroyer.h"
 
-void Player::SetupShips(Ship* ship)
+
+void Player::SetupShips()
 {
-	Point start;
-	Point temp;
-	int dir;
-	
-	do{
-		start.x = rand() % 8 + 'a';
-		start.y = rand() % 8 + '1';
 
-		dir = rand() % 4;
+	for (auto ship : m_Ships) {
 
-		if (IsValid(start, ship->GetHP(), dir)) {
-			std::cout << ship->GetName() << " 배치 완료" << std::endl;
-			for (int i = 0; i < ship->GetHP(); i++) {
-				temp = MakePointDirected(start, dir, i);
-				ship->AddPosition(temp);
-				printf("%d %d \n", temp.x - 'a', temp.y - '1' );
-				m_Map[temp.y - '1'][temp.x - 'a'] = 1;
-				std::cout << i << "번째:" << ship->GetPosition(i).x << ship->GetPosition(i).y << "\n" << std::endl;
+		Point start;
+		Point temp;
+		int dir;
+		
+		do {
+			start.x = rand() % MAP_WIDTH + 'a';
+			start.y = rand() % MAP_WIDTH + '1';
+
+			dir = rand() % DIR_MAX;
+
+			if (IsValidPoint(start, ship->GetShipSize(), dir)) {
+				std::cout << ship->GetName() << " 배치 완료" << std::endl;
+				for (int i = 0; i < ship->GetShipSize(); i++) {
+					temp = MakePointDirected(start, dir, i);
+					ship->AddPoint(temp);
+					printf("%d %d \n", temp.x - 'a', temp.y - '1');
+					std::cout << i << "번째:" << ship->Getpoint(i).x << ship->Getpoint(i).y << "\n" << std::endl;
+				}
+				break;
 			}
-			return;
-		}
-			
-	} while (true);
-	
+
+		} while (true);
+	}
+
 }
 
+
 //사용할수있는점인지 검사.
-bool Player::IsValid(Point startPoint, int lenth, int dir)
+bool Player::IsValidPoint(Point startPoint, int lenth, int dir)
 {
 	//시작점 범위 체크
 	if (!IsValidRange(Point(startPoint.x, startPoint.y)))
@@ -50,10 +52,12 @@ bool Player::IsValid(Point startPoint, int lenth, int dir)
 		return false;
 
 	//놓을 범위 내에 다른 배가 있는지 체크.
-	for (int i = 0; i < lenth; i++)
-	{
-		if (!IsValidPoint(MakePointDirected(startPoint, dir, i)))
-			return false;
+	for (auto ship : m_Ships) {
+		for (int i = 0; i < lenth; i++)
+		{
+			if (ship->HasPoint(MakePointDirected(startPoint, dir, i)))
+				return false;
+		}
 	}
 
 	return true;
@@ -62,62 +66,126 @@ bool Player::IsValid(Point startPoint, int lenth, int dir)
 //범위안에 있는 점인지 검사
 bool Player::IsValidRange(Point point)
 {
-		if (point.x < 'a' || point.x > 'h')
-			return false;
-
-		if (point.y < '1' || point.y > '8')
-			return false;
-
-		return true;
-}
-
-//다른 배가 있는 점인지 검사
-bool Player::IsValidPoint(Point point)
-{
-	if (m_Map[point.y - '1'][point.x - 'a'] == 1)
+	if (point.x < 'a' || point.x > 'h')
 		return false;
+
+
+	if (point.y < '1' || point.y > '8')
+		return false;
+
 	return true;
 }
 
 Point Player::MakePointDirected(Point start, int dir, int i) {
 	switch (dir)
 	{
-	case UP:
+	case DIR_UP:
 		return Point(start.x, start.y + i);
-	case RIGHT:
+	case DIR_RIGHT:
 		return Point(start.x + i, start.y);
-	case DOWN:
+	case DIR_DOWN:
 		return Point(start.x, start.y - i);
-	case LEFT:
+	case DIR_LEFT:
 		return Point(start.x - i, start.y);
 	}
+
+	std::cout << "DIRECTION OUT OF RANGE" << std::endl;
+	return Point(-1, -1);
 }
 
-void Player::PrintMap()
-{
-	for (int i = 0; i < 8; ++i)
+bool Player::IsAlive() {
+	for (auto ship : m_Ships)
 	{
-		printf("\n");
-		for (int j = 0; j < 8; ++j)
-		{
-			printf("%d", m_Map[i][j]);
-		}
-		printf("\n");
+		if (ship->GetHP() > 0)
+			return true;
 	}
+	return false;
 }
 
-Player::Player()
+Point Player::Attack()
 {
+	char x;
+	char y;
+	do {
+		x = rand() % MAP_WIDTH + 'a';
+		y = rand() % MAP_WIDTH + '1';
+	} while (!IsValidAttack(Point(x, y)));
+
+	attackedPoints.push_back(Point(x, y));
+	return Point(x, y);
+}
+
+bool Player::IsValidAttack(Point point) {
+	for (auto& p : attackedPoints) {
+		if (p.x == point.x && p.y == point.y)
+			return false;
+	}
+	return true;
+}
+
+HitResult Player::HitCheck(Point point)
+{
+	Ship* attackedShip = nullptr;
+
+	for (auto& ship : m_Ships) {
+		if (ship->HasPoint(point))
+			attackedShip = ship;
+	}
+
+	if (attackedShip != nullptr) {
+		//공격당한 점을 지운다.
+		attackedShip->RemovePoint(point);
+
+		//hp가 0이라면 사인을 내보낸다.
+		if (attackedShip->GetHP() == 0)
+			return DestoySign(attackedShip);
+
+		return HIT;
+	}
+	return MISS;
+}
+
+
+HitResult Player::DestoySign(Ship* ship) {
+	switch (ship->GetShipType())
+	{
+	case DESTROYER:
+		return DESTROYER_DESTROYED;
+	case CRUISER:
+		return CRUISER_DESTROYED;
+	case BATTLESHIP:
+		return BATTLESHIP_DESTROYED;
+	case AIRCRAFT:
+		return AIRCRAFT_DESTROYED;
+	}
+	return HIT;
+}
+
+void Player::Reset() {
+	for (auto ship : m_Ships) {
+		ship->Reset();
+	}
+	SetupShips();
+	attackedPoints.clear();
+}
+void Player::Init() {
 	m_Ships.push_back(new Aircraft());
 	m_Ships.push_back(new Battleship());
 	m_Ships.push_back(new Cruiser());
 	m_Ships.push_back(new Destroyer());
 	m_Ships.push_back(new Destroyer());
+}
 
-	ZeroMemory(m_Map, sizeof(m_Map));
+
+Player::Player()
+{
 }
 
 
 Player::~Player()
 {
+	for (auto iter = m_Ships.begin(); iter != m_Ships.end(); iter++)
+		delete *iter;
+
+	m_Ships.clear();
 }

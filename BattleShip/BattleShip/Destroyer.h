@@ -6,5 +6,6 @@ class Destroyer :
 public:
 	Destroyer();
 	~Destroyer();
+	void Reset() override;
 };
 

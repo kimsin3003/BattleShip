@@ -1,6 +1,62 @@
 #include "stdafx.h"
+#include <iostream>
 #include "Ship.h"
 
+
+
+
+//가지고 있는 점인지 검사
+bool Ship::HasPoint(Point point)
+{
+
+	for (auto myPoint : m_points) {
+		if (myPoint.x == point.x && myPoint.y == point.y)
+			return true;
+	}
+
+	return false;
+}
+
+void Ship::AddPoint(Point point)
+{
+	
+	if (!((point.x >= 'a') && (point.x <= 'h') && (point.y) >= '1' && (point.y <= '8'))){
+		printf("wrong point\n");
+		return;
+	}
+
+	if (m_points.size() >= (size_t)ship_Size){
+		printf("too many!\n");
+		return;
+	}
+	m_points.push_back(point);
+
+}
+
+void Ship::PrintPoint()
+{
+	for (auto& point : m_points)
+	{
+		printf("Point: (%c, %c)\n", point.x, point.y);
+	}
+}
+
+void Ship::RemovePoint(Point point ) { 
+	for (auto iter = m_points.begin(); iter != m_points.end(); iter++) {
+		if (iter->x == point.x && iter->y == point.y) {
+			m_points.erase(iter);
+			m_Hp--;
+			return;
+		}
+	}
+	
+}
+
+void Ship::Reset()
+{
+	alive = true;
+	m_points.clear();
+}
 
 Ship::Ship()
 {
@@ -10,58 +66,4 @@ Ship::Ship()
 
 Ship::~Ship()
 {
-}
-
-
-
-HitResult Ship::HitCheck(char x, char y)
-{
-	return HitCheck(Point(x, y));
-}
-
-HitResult Ship::HitCheck(Point pos)
-{
-	for (auto& shipPos : m_Pos)
-	{
-		if (shipPos.x == pos.x && shipPos.y == pos.y)
-		{
-			m_Hp--;
-			if (m_Hp <= 0)
-				return DESTROY;
-
-			return HIT;
-		}
-
-	}
-
-	return MISS;
-}
-
-void Ship::AddPosition(Point pos)
-{
-	
-	if (!((pos.x >= 'a') && (pos.x <= 'h') && (pos.y) >= '1' && (pos.y <= '8'))){
-		printf("wrong pos\n");
-		return;
-	}
-
-	if (m_Pos.size() >= m_Hp){
-		printf("too many!\n");
-		return;
-	}
-
-	m_Pos.push_back(pos);
-
-}
-
-void Ship::printPosition()
-{
-	for (auto& pos : m_Pos)
-	{
-		printf("Point: (%c, %c)\n", pos.x, pos.y);
-	}
-}
-
-Point Ship::GetPosition(int index){
-	return m_Pos[index];
 }

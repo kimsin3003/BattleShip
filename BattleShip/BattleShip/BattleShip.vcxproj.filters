@@ -13,7 +13,10 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\ships">
+    <Filter Include="Source Files\Player">
+      <UniqueIdentifier>{52c0c84f-a77c-4ffc-bcf7-5667e23a3e15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ships">
       <UniqueIdentifier>{e8d5fbab-e8a3-46de-8ccb-ef11c3134924}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -28,21 +31,24 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Battleship.h">
-      <Filter>Source Files\ships</Filter>
+      <Filter>Source Files\Ships</Filter>
     </ClInclude>
     <ClInclude Include="Cruiser.h">
-      <Filter>Source Files\ships</Filter>
+      <Filter>Source Files\Ships</Filter>
     </ClInclude>
     <ClInclude Include="Destroyer.h">
-      <Filter>Source Files\ships</Filter>
-    </ClInclude>
-    <ClInclude Include="Ship.h">
-      <Filter>Source Files\ships</Filter>
+      <Filter>Source Files\Ships</Filter>
     </ClInclude>
     <ClInclude Include="Aircraft.h">
-      <Filter>Source Files\ships</Filter>
+      <Filter>Source Files\Ships</Filter>
+    </ClInclude>
+    <ClInclude Include="Ship.h">
+      <Filter>Source Files\Ships</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
+      <Filter>Source Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,25 +56,28 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BattleShip.cpp">
+      <Filter>Source Files\Ships</Filter>
+    </ClCompile>
+    <ClCompile Include="Cruiser.cpp">
+      <Filter>Source Files\Ships</Filter>
+    </ClCompile>
+    <ClCompile Include="Destroyer.cpp">
+      <Filter>Source Files\Ships</Filter>
+    </ClCompile>
+    <ClCompile Include="Aircraft.cpp">
+      <Filter>Source Files\Ships</Filter>
+    </ClCompile>
+    <ClCompile Include="Ship.cpp">
+      <Filter>Source Files\Ships</Filter>
+    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BattleShip.cpp">
-      <Filter>Source Files\ships</Filter>
-    </ClCompile>
-    <ClCompile Include="Cruiser.cpp">
-      <Filter>Source Files\ships</Filter>
-    </ClCompile>
-    <ClCompile Include="Destroyer.cpp">
-      <Filter>Source Files\ships</Filter>
-    </ClCompile>
-    <ClCompile Include="Ship.cpp">
-      <Filter>Source Files\ships</Filter>
-    </ClCompile>
-    <ClCompile Include="Aircraft.cpp">
-      <Filter>Source Files\ships</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

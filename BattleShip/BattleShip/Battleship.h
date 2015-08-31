@@ -6,5 +6,6 @@ class Battleship :
 public:
 	Battleship();
 	~Battleship();
+	void Reset() override;
 };
 

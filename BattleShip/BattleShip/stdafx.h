@@ -11,5 +11,25 @@
 #include <tchar.h>
 
 
+enum DIR {
+	DIR_UP,
+	DIR_RIGHT,
+	DIR_DOWN,
+	DIR_LEFT,
+	DIR_MAX
+};
 
-// TODO: reference additional headers your program requires here
+#define MAP_WIDTH 8
+
+struct Point
+{
+	Point() {}
+
+	Point(char ax, char ay)
+	{
+		x = ax;
+		y = ay;
+	}
+	char x, y; //x: 'a'~'h', y: '1'~'8'
+};
+

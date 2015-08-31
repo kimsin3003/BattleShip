@@ -6,7 +6,7 @@ class Aircraft :
 public:
 	Aircraft();
 	~Aircraft();
-
+	void Reset() override;
 	
 };
 
