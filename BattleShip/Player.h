@@ -4,6 +4,11 @@
 #include "string"
 #include <iostream>
 
+enum PlayerType {
+	HUM,
+	COM
+};
+
 class Player
 {
 public:
@@ -15,20 +20,22 @@ public:
 	bool IsValidRange(Point point);
 	Point MakePointDirected(Point start, int dir, int i);
 	bool IsAlive();
-	Point Attack();
-	//Map GetMap() { return map; };
-	Ship* GetShip(int i) { return m_Ships.at(i); };
-	int GetShipNum() { return m_Ships.size(); }
+
+	virtual Point Attack() = 0;
+	virtual void UpdateStrategy(HitResult hitResult) = 0;
+
 	HitResult HitCheck(Point point);
 
-	void Reset();
-	void Init();
+	Ship* GetShip(int i) { return m_Ships.at(i); };
+	int GetShipNum() { return m_Ships.size(); }
 
-private:
-	
+
+	virtual void Reset();
+	std::vector<Point> attackedPoints;
+
+protected:
 	std::vector<Ship*> m_Ships;
 	HitResult DestoySign(Ship* ship);
-	std::vector<Point> attackedPoints;
 	bool IsValidAttack(Point point);
 };
 

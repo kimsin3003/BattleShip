@@ -51,11 +51,14 @@
     <ClInclude Include="GameManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Human.h">
+      <Filter>Source Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Computer.h">
+      <Filter>Source Files\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BattleShip.cpp">
       <Filter>Source Files\Ships</Filter>
     </ClCompile>
@@ -79,6 +82,12 @@
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Human.cpp">
+      <Filter>Source Files\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Computer.cpp">
+      <Filter>Source Files\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

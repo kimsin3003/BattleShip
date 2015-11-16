@@ -1,5 +1,7 @@
 #pragma once
-#include "Player.h"
+#include "Human.h"
+#include "Computer.h"
+
 class GameManager
 {
 public:

@@ -6,10 +6,10 @@
 #pragma once
 
 #include "targetver.h"
-
+#include <iostream>
 #include <stdio.h>
 #include <tchar.h>
-
+using namespace std;
 
 enum DIR {
 	DIR_UP,
@@ -25,11 +25,28 @@ struct Point
 {
 	Point() {}
 
-	Point(char ax, char ay)
+	Point(int ax, int ay)
 	{
 		x = ax;
 		y = ay;
 	}
-	char x, y; //x: 'a'~'h', y: '1'~'8'
+	int x, y; //x: '0'~'7', y: '0'~'7'
 };
 
+
+enum Ship_Type {
+	DESTROYER = 2,
+	CRUISER,
+	BATTLESHIP,
+	AIRCRAFT
+};
+
+enum HitResult
+{
+	MISS,
+	HIT,
+	DESTROYER_DESTROYED,
+	CRUISER_DESTROYED,
+	BATTLESHIP_DESTROYED,
+	AIRCRAFT_DESTROYED
+};

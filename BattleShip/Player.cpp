@@ -13,14 +13,17 @@ void Player::SetupShips()
 
 	for (auto ship : m_Ships) {
 
+		
+		
+		
 		Point start;
 		Point temp;
 		int dir;
 		
 		do {
-			start.x = rand() % MAP_WIDTH + 'a';
-			start.y = rand() % MAP_WIDTH + '1';
-
+			start.x = rand() % MAP_WIDTH;
+			start.y = rand() % MAP_WIDTH;
+				
 			dir = rand() % DIR_MAX;
 
 			if (IsValidPoint(start, ship->GetShipSize(), dir)) {
@@ -28,8 +31,10 @@ void Player::SetupShips()
 				for (int i = 0; i < ship->GetShipSize(); i++) {
 					temp = MakePointDirected(start, dir, i);
 					ship->AddPoint(temp);
-					printf("%d %d \n", temp.x - 'a', temp.y - '1');
-					std::cout << i << "번째:" << ship->Getpoint(i).x << ship->Getpoint(i).y << "\n" << std::endl;
+					printf("%d %d \n", temp.x, temp.y);
+					std::cout << i << "번째:" << ship->Getpoint(
+						
+						i).x << ship->Getpoint(i).y << "\n" << std::endl;
 				}
 				break;
 			}
@@ -66,13 +71,14 @@ bool Player::IsValidPoint(Point startPoint, int lenth, int dir)
 //범위안에 있는 점인지 검사
 bool Player::IsValidRange(Point point)
 {
-	if (point.x < 'a' || point.x > 'h')
+	if (point.x < 0 || point.x > 7)
 		return false;
 
 
-	if (point.y < '1' || point.y > '8')
+	if (point.y < 0 || point.y > 7)
 		return false;
 
+	//printf("%d %d True\n", point.x, point.y);
 	return true;
 }
 
@@ -89,7 +95,7 @@ Point Player::MakePointDirected(Point start, int dir, int i) {
 		return Point(start.x - i, start.y);
 	}
 
-	std::cout << "DIRECTION OUT OF RANGE" << std::endl;
+	//std::cout << "DIRECTION OUT OF RANGE" << std::endl;
 	return Point(-1, -1);
 }
 
@@ -102,18 +108,6 @@ bool Player::IsAlive() {
 	return false;
 }
 
-Point Player::Attack()
-{
-	char x;
-	char y;
-	do {
-		x = rand() % MAP_WIDTH + 'a';
-		y = rand() % MAP_WIDTH + '1';
-	} while (!IsValidAttack(Point(x, y)));
-
-	attackedPoints.push_back(Point(x, y));
-	return Point(x, y);
-}
 
 bool Player::IsValidAttack(Point point) {
 	for (auto& p : attackedPoints) {
@@ -168,17 +162,15 @@ void Player::Reset() {
 	SetupShips();
 	attackedPoints.clear();
 }
-void Player::Init() {
+
+
+Player::Player()
+{
 	m_Ships.push_back(new Aircraft());
 	m_Ships.push_back(new Battleship());
 	m_Ships.push_back(new Cruiser());
 	m_Ships.push_back(new Destroyer());
 	m_Ships.push_back(new Destroyer());
-}
-
-
-Player::Player()
-{
 }
 
 

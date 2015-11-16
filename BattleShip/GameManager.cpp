@@ -17,12 +17,8 @@ void GameManager::Play()
 	int sum = 0;
 
 	std::vector<Player*> players;
-	players.push_back(new Player());
-	players.push_back(new Player());
-
-	for (auto player : players) {
-		player->Init();
-	}
+	players.push_back(new Computer());
+	players.push_back(new Human());
 
 	while (count <= 10) {
 
@@ -42,18 +38,20 @@ void GameManager::Play()
 			defender = players.at((ternNum + 1) % players.size());
 			hit = PlayTern(attacker, defender);
 
-			PrintHitSign(hit);
+			//PrintHitSign(hit);
 
 			if (!defender->IsAlive()) {
 				std::cout << "Player" << ternNum % players.size() + 1 << " Win!" << std::endl;
+				for (auto iter = defender->attackedPoints.begin(); iter != defender->attackedPoints.end(); iter++)
+					std::cout << iter->x << " " << iter->y << std::endl;
 				break;
+				getchar();
 			}
 
 			ternNum++;
 		}
 		
 		count++;
-		getchar();
 		sum += ternNum / 2;
 	}
 
@@ -66,10 +64,12 @@ HitResult GameManager::PlayTern(Player* attacker, Player* defender)
 {
 	
 	Point attackPoint;
-
+	HitResult result;
 	attackPoint = attacker->Attack();
+	result = defender->HitCheck(attackPoint);
+	attacker->UpdateStrategy(result);
 
-	return defender->HitCheck(attackPoint);
+	return result;
 }
 
 void GameManager::PrintHitSign(HitResult hitSign)

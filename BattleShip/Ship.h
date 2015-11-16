@@ -1,25 +1,6 @@
 #pragma once
 #include <vector>
 
-
-enum Ship_Type {
-	EMPTY = 0,
-	DESTROYER = 2,
-	CRUISER,
-	BATTLESHIP,
-	AIRCRAFT
-};
-
-enum HitResult
-{
-	MISS,
-	HIT,
-	AIRCRAFT_DESTROYED,
-	BATTLESHIP_DESTROYED,
-	CRUISER_DESTROYED,
-	DESTROYER_DESTROYED
-};
-
 class Ship
 {
 
@@ -27,9 +8,9 @@ public:
 	Ship();
 	~Ship();
 
-	void SetPosition();
 	void PrintPoint();
-	Point Getpoint(int index) { return m_points[index]; }
+	
+	Point Getpoint(int index) { return m_Points[index]; }
 	void RemovePoint(Point point);
 	bool HasPoint(Point point);
 	int GetHP() { return m_Hp; }
@@ -39,12 +20,11 @@ public:
 	bool IsAlive() { return alive; }
 	virtual void Reset();
 	void AddPoint(Point point);
-	//virtual	HitResult DistroySign() = 0;
 
 
 protected:
 	std::string m_Name; 
-	std::vector<Point> m_points;
+	std::vector<Point> m_Points;
 	int m_Hp;
 	int ship_Size;
 	Ship_Type ship_Type;

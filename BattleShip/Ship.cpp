@@ -6,10 +6,11 @@
 
 
 //가지고 있는 점인지 검사
-bool Ship::HasPoint(Point point)
+bool Ship::HasPoint
+(Point point)
 {
 
-	for (auto myPoint : m_points) {
+	for (auto myPoint : m_Points) {
 		if (myPoint.x == point.x && myPoint.y == point.y)
 			return true;
 	}
@@ -20,31 +21,31 @@ bool Ship::HasPoint(Point point)
 void Ship::AddPoint(Point point)
 {
 	
-	if (!((point.x >= 'a') && (point.x <= 'h') && (point.y) >= '1' && (point.y <= '8'))){
+	if (!((point.x >= 0) && (point.x <= 7) && (point.y) >= 0 && (point.y <= 7))){
 		printf("wrong point\n");
 		return;
 	}
 
-	if (m_points.size() >= (size_t)ship_Size){
+	if (m_Points.size() >= (size_t)ship_Size){
 		printf("too many!\n");
 		return;
 	}
-	m_points.push_back(point);
+	m_Points.push_back(point);
 
 }
 
 void Ship::PrintPoint()
 {
-	for (auto& point : m_points)
+	for (auto& point : m_Points)
 	{
-		printf("Point: (%c, %c)\n", point.x, point.y);
+		printf("Point: (%d, %d)\n", point.x, point.y);
 	}
 }
 
 void Ship::RemovePoint(Point point ) { 
-	for (auto iter = m_points.begin(); iter != m_points.end(); iter++) {
+	for (auto iter = m_Points.begin(); iter != m_Points.end(); iter++) {
 		if (iter->x == point.x && iter->y == point.y) {
-			m_points.erase(iter);
+			m_Points.erase(iter);
 			m_Hp--;
 			return;
 		}
@@ -55,7 +56,7 @@ void Ship::RemovePoint(Point point ) {
 void Ship::Reset()
 {
 	alive = true;
-	m_points.clear();
+	m_Points.clear();
 }
 
 Ship::Ship()
